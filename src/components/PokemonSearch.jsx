@@ -14,8 +14,9 @@ const usePokemonSearch = () => {
             let nextUrl = 'https://pokeapi.co/api/v2/pokemon';
 
             try {
-                
+                setLoading(true);
                 while (nextUrl) {
+                  
                     const response = await fetch(nextUrl);
                     if (!response.ok) {
                         throw new Error('Failed to fetch initial Pokémon list.');
@@ -24,7 +25,7 @@ const usePokemonSearch = () => {
                     allPokemonList = [...allPokemonList, ...data.results];
                     nextUrl = data.next;
                 }
-
+                
                
                 const BATCH_SIZE = 50; 
                 const fetchedData = [];
@@ -54,7 +55,7 @@ const usePokemonSearch = () => {
                     const validBatch = batchResults.filter(p => p !== null);
                     fetchedData.push(...validBatch);
                 }
-
+                setLoading(false);
                 setAllPokemonData(fetchedData);
                 setPokemons(fetchedData);
 
