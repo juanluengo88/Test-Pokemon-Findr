@@ -1,0 +1,91 @@
+/* src/App.css */
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-header {
+  background-color: #e3350d;
+  padding: 20px; 
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+  width: 100%; 
+  box-sizing: border-box; 
+}
+
+.header-content {
+  display: flex; 
+  align-items: center; 
+  width: 100%; 
+  max-width: 1200px; 
+  justify-content: space-between; 
+}
+
+.app-header h1 {
+  margin: 0; 
+  font-size: 2.5em; 
+  letter-spacing: 2px; 
+  text-transform: uppercase;
+}
+
+.app-footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  margin-top: auto; /* This is the key line */
+}
+
+.pokeball-icon {
+  width: 50px; 
+  height: 50px; 
+  vertical-align: middle; 
+  animation: rotate 3s linear infinite; 
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.app-footer a {
+  color: #e3350d;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+
+.status-message {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 1.2em;
+  color: red; 
+}
+
+.status-message.error-message {
+  color: #e3350d; 
+  font-weight: bold;
+}
+
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
