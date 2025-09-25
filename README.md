@@ -1,16 +1,12 @@
-# React + Vite
+## Pokemon Findr
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Requisitos del Sistema
+Para ejecutar este proyecto, solo necesitas tener Docker Desktop instalado en tu máquina.
 
-Currently, two official plugins are available:
+Para ejecutar el proyecto segui los siguientes pasos
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1) git clone https://github.com/juanluengo88/Test-Pokemon-Findr.git
+2) cd tu-repositorio
+3) contrui la imagen de docker (docker build -t pokemon-finder .)
+4) corre la imagen de docker en puerto 8080 (docker run -p 80:80 pokemon-finder)
+5) accede a la pagina y listo (http://localhost:8080) 
