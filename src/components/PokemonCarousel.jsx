@@ -7,6 +7,8 @@ import './PokemonCarousel.css';
 
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
+const limitSlidesToShow = (value,pokemons) => Math.min(value, pokemons);
+
 const PrevArrow = (props) => {
   const { onClick } = props;
   return (
@@ -33,8 +35,8 @@ const PokemonCarousel = ({ pokemons }) => {
     arrows: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 4, 
-    slidesToScroll: 4, 
+    slidesToShow: limitSlidesToShow(4,pokemons.length),
+    slidesToScroll: limitSlidesToShow(4,pokemons.length),
     initialSlide: 0,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,

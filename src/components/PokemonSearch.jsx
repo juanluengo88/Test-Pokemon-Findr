@@ -1,85 +1,96 @@
+// src/components/usePokemonSearch.js
 import { useState, useEffect } from 'react';
 
 const usePokemonSearch = () => {
   const [pokemons, setPokemons] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [allPokemonNames, setAllPokemonNames] = useState([]);
+  const [allPokemonData, setAllPokemonData] = useState([]); 
   const [initialLoading, setInitialLoading] = useState(true);
 
   useEffect(() => {
-    const fetchAllNames = async () => {
-      let results = [];
-      let nextUrl = 'https://pokeapi.co/api/v2/pokemon'; 
+        const fetchAllPokemon = async () => {
+            let allPokemonList = [];
+            let nextUrl = 'https://pokeapi.co/api/v2/pokemon';
 
-      try {
-        
-        while (nextUrl) {
-          const response = await fetch(nextUrl);
-          if (!response.ok) {
-            throw new Error('Failed to fetch initial Pokémon list.');
-          }
-          const data = await response.json();
-          results = [...results, ...data.results];
-          nextUrl = data.next; 
-        }
-        setAllPokemonNames(results);
-      } catch (err) {
-        console.error("Failed to fetch initial Pokémon list:", err);
-        setError("Error al cargar la lista completa de Pokémon. Por favor, recargue la página.");
-      } finally {
-        setInitialLoading(false); 
-      }
-    };
-    fetchAllNames();
-  }, []); 
+            try {
+                
+                while (nextUrl) {
+                    const response = await fetch(nextUrl);
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch initial Pokémon list.');
+                    }
+                    const data = await response.json();
+                    allPokemonList = [...allPokemonList, ...data.results];
+                    nextUrl = data.next;
+                }
 
-  
-  const searchPokemons = async (term) => {
+               
+                const BATCH_SIZE = 50; 
+                const fetchedData = [];
+
+                for (let i = 0; i < allPokemonList.length; i += BATCH_SIZE) {
+                    const batch = allPokemonList.slice(i, i + BATCH_SIZE);
+                    const detailedPokemonPromises = batch.map(async (pokemon) => {
+                        try {
+                            const res = await fetch(pokemon.url);
+                            if (!res.ok) {
+                                console.warn(`Could not fetch details for ${pokemon.name}: ${res.status}`);
+                                return null;
+                            }
+                            const detailedData = await res.json();
+                            return {
+                                id: detailedData.id,
+                                name: detailedData.name,
+                                image: detailedData.sprites.front_default
+                            };
+                        } catch (err) {
+                            console.error(`Error fetching data for ${pokemon.name}:`, err);
+                            return null;
+                        }
+                    });
+
+                    const batchResults = await Promise.all(detailedPokemonPromises);
+                    const validBatch = batchResults.filter(p => p !== null);
+                    fetchedData.push(...validBatch);
+                }
+
+                setAllPokemonData(fetchedData);
+                setPokemons(fetchedData);
+
+            } catch (err) {
+                console.error("Failed to fetch all Pokémon data:", err);
+                setError("Error al cargar la lista completa de Pokémon. Por favor, recargue la página.");
+            } finally {
+                setInitialLoading(false);
+            }
+        };
+        fetchAllPokemon();
+    }, []);
+
+  const searchPokemons = (term) => {
     setLoading(true);
     setError(null);
-    setPokemons([]); 
+    setPokemons([]);
 
+    
     try {
-      if (!term.trim()) {
-       
-        setLoading(false);
-        return;
-      }
-      
-     
-      const filteredResults = allPokemonNames.filter(p => p.name.includes(term.toLowerCase()));
-
-      if (filteredResults.length === 0) {
-        setError(`No se encontraron resultados para "${term}".`);
-        
-        setLoading(false);
-        return;
-      }
-
-      
-      const detailedPokemons = await Promise.all(
-        filteredResults.map(async (pokemon) => {
-          const res = await fetch(pokemon.url);
-          if (!res.ok) throw new Error('Failed to fetch detailed data for a Pokémon.');
-          const detailedData = await res.json();
-          return {
-            id: detailedData.id,
-            name: detailedData.name,
-          };
-        })
-      );
-
-      setPokemons(detailedPokemons);
-
+        if (!term.trim()) {
+            setPokemons(allPokemonData);
+        } else {
+            const filteredResults = allPokemonData.filter(p => p.name.includes(term.toLowerCase()));
+            if (filteredResults.length === 0) {
+                setError(`No se encontraron resultados para "${term}".`);
+            }
+            setPokemons(filteredResults);
+        }
     } catch (err) {
-      setError("Hubo un error al buscar los Pokémon. Por favor, inténtelo de nuevo más tarde.");
-      console.error(err);
+        setError("Hubo un error al buscar los Pokémon. Por favor, inténtelo de nuevo más tarde.");
+        console.error(err);
     } finally {
-      setLoading(false);
+        setLoading(false);
     }
   };
-
 
   return { pokemons, loading, error, initialLoading, searchPokemons };
 };
