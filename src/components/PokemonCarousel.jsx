@@ -57,8 +57,8 @@ const PokemonCarousel = ({ pokemons }) => {
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: limitSlidesToShow(1,pokemons.length),
-          slidesToScroll: limitSlidesToShow(1,pokemons.length),
+          slidesToShow: 1,
+          slidesToScroll: 1,
         }
       }
     ]
