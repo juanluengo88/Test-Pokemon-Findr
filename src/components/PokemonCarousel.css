@@ -63,14 +63,5 @@
   .slick-next {
     right: 5px;
   }
-   .slick-slide {
-    width: 100% !important; 
-  }
-
-  
-  .slick-slide > div {
-    width: 100%;
-    margin: 0;
-  }
 }
 
