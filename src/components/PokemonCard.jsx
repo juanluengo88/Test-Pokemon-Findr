@@ -1,7 +1,7 @@
 // src/PokemonCard.jsx
 import React from 'react';
 import { Link } from 'react-router-dom'; // Import Link
-import './PokemonCard.css';
+import '../styles/PokemonCard.css';
 
 const PokemonCard = ({ pokemon }) => {
   return (

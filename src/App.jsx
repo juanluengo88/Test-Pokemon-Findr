@@ -5,8 +5,8 @@ import SearchBar from './components/SearchBar';
 import PokemonCarousel from './components/PokemonCarousel';
 import usePokemonSearch from './components/PokemonSearch';
 import PokemonDetails from './components/PokemonDetails';
-import './App.css';
-import './components/SearchBar.css';
+import './styles/App.css';
+import './styles/SearchBar.css';
 import "./components/Footer"
 import "./components/Header"
 import Page_Header from './components/Header';

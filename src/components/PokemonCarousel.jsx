@@ -2,7 +2,7 @@ import Slider from 'react-slick';
 import PokemonCard from './PokemonCard';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import './PokemonCarousel.css';
+import '../styles/PokemonCarousel.css';
 
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 

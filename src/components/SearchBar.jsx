@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './SearchBar.css'; // We'll create this CSS file next
+import '../styles/SearchBar.css'; // We'll create this CSS file next
 
 
 export const SearchBar = ({ onSearch }) => {

@@ -1,5 +1,6 @@
 // src/components/usePokemonSearch.js
 import { useState, useEffect } from 'react';
+const BASE_URL = import.meta.env.VITE_POKEAPI_BASE_URL;
 
 const usePokemonSearch = () => {
   const [pokemons, setPokemons] = useState([]);
@@ -11,7 +12,7 @@ const usePokemonSearch = () => {
   useEffect(() => {
         const fetchAllPokemon = async () => {
             let allPokemonList = [];
-            let nextUrl = 'https://pokeapi.co/api/v2/pokemon';
+            let nextUrl = `${BASE_URL}pokemon`;
 
             try {
                 setLoading(true);
