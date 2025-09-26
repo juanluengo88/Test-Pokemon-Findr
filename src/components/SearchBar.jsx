@@ -15,6 +15,10 @@ export const SearchBar = ({ onSearch }) => {
     }
   };
 
+  const handleGoBack= () =>{
+    onSearch("");
+  }
+
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
       handleSearch();
@@ -22,7 +26,11 @@ export const SearchBar = ({ onSearch }) => {
   };
 
   return (
+    
     <div className="search-bar-container">
+      <button onClick={handleGoBack} className="search-button">
+        Go back
+      </button>
       <input
         type="text"
         placeholder="Enter Pokemon name..."

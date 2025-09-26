@@ -1,4 +1,3 @@
-import React from 'react';
 import Slider from 'react-slick';
 import PokemonCard from './PokemonCard';
 import 'slick-carousel/slick/slick.css';
@@ -33,7 +32,6 @@ const PokemonCarousel = ({ pokemons }) => {
   const settings = {
     dots: false,
     arrows: true,
-    infinite: true,
     speed: 500,
     slidesToShow: limitSlidesToShow(4,pokemons.length),
     slidesToScroll: limitSlidesToShow(4,pokemons.length),

@@ -10,32 +10,37 @@ body,
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  width: 100%;
+  max-width: 100%;
+  overflow: visible;
 }
 
 .app-header {
   background-color: #e3350d;
-  padding: 20px; 
+  padding: 20px;
   color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  display: flex; 
-  justify-content: center; 
+  display: flex;
+  justify-content: center;
   align-items: center;
-  width: 100%; 
-  box-sizing: border-box; 
+  width: 100%;
+  box-sizing: border-box;
 }
-
+.logo-button {
+  background-color: #e3350d;
+}
 .header-content {
-  display: flex; 
-  align-items: center; 
-  width: 100%; 
-  max-width: 1200px; 
-  justify-content: space-between; 
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  justify-content: space-between;
 }
 
 .app-header h1 {
-  margin: 0; 
-  font-size: 2.5em; 
-  letter-spacing: 2px; 
+  margin: 0;
+  font-size: 2.5em;
+  letter-spacing: 2px;
   text-transform: uppercase;
 }
 
@@ -48,10 +53,10 @@ body,
 }
 
 .pokeball-icon {
-  width: 50px; 
-  height: 50px; 
-  vertical-align: middle; 
-  animation: rotate 3s linear infinite; 
+  width: 50px;
+  height: 50px;
+  vertical-align: middle;
+  animation: rotate 3s linear infinite;
 }
 
 .footer-content {
@@ -67,19 +72,17 @@ body,
   font-weight: bold;
 }
 
-
 .status-message {
   text-align: center;
   margin-top: 20px;
   font-size: 1.2em;
-  color: red; 
+  color: red;
 }
 
 .status-message.error-message {
-  color: #e3350d; 
+  color: #e3350d;
   font-weight: bold;
 }
-
 
 @keyframes rotate {
   from {
