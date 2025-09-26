@@ -32,6 +32,7 @@ const PokemonCarousel = ({ pokemons }) => {
   const settings = {
     dots: false,
     arrows: true,
+    infinite: true,
     speed: 500,
     slidesToShow: limitSlidesToShow(4,pokemons.length),
     slidesToScroll: limitSlidesToShow(4,pokemons.length),
@@ -42,24 +43,22 @@ const PokemonCarousel = ({ pokemons }) => {
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
+          slidesToShow: limitSlidesToShow(3,pokemons.length),
+          slidesToScroll: limitSlidesToShow(3,pokemons.length),
         }
       },
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
+          slidesToShow: limitSlidesToShow(2,pokemons.length),
+          slidesToScroll: limitSlidesToShow(2,pokemons.length),
         }
       },
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
+          slidesToShow: limitSlidesToShow(1,pokemons.length),
+          slidesToScroll: limitSlidesToShow(1,pokemons.length),
         }
       }
     ]

@@ -15,18 +15,31 @@
   color: white;
   width: 40px;
   height: 40px;
-  border-radius: 100%;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1;
-  flex-wrap: wrap;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  cursor: pointer;
 }
 
-.slick-prev,
+.slick-prev{
+  left: -25px; 
+}
 .slick-next {
   opacity: 1 !important;
-  z-index: 2;
+  right: -25px;
+}
+
+.slick-prev {
+  left: -20px; 
+}
+
+.slick-next {
+  right: -20px; 
 }
 
 .slick-prev:hover,
@@ -37,3 +50,19 @@
 .custom-arrow:hover {
   background: rgba(255, 0, 0, 0.8);
 }
+
+
+@media (max-width: 768px) {
+  .carousel-container {
+    /* Set padding to 0 or a very small value to maximize internal space */
+    padding: 0 5px; 
+  }
+  .slick-prev {
+    left: 5px;
+  }
+
+  .slick-next {
+    right: 5px;
+  }
+}
+
